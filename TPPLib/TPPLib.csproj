@@ -6,5 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
+    <Folder Include="TPPOperations\" />
+    <Folder Include="TPPResults\" />
   </ItemGroup>
 </Project>

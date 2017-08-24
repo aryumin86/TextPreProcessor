@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace TPPLib.Entities
 {
     /// <summary>
@@ -9,5 +11,6 @@ namespace TPPLib.Entities
     public abstract class Token
     {
         public string Content { get; set; }
+        public string TextId { get; set; }
     }
 }

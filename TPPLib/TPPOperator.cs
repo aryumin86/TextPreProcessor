@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using TPPLib.Entities;
+using TPPLib.TPPOperations;
+
 namespace TPPLib
 {
     /// <summary>
@@ -6,6 +10,18 @@ namespace TPPLib
     /// </summary>
     public class TPPOperator
     {
-        
+        List<Token> tokens;
+        List<TPPOperation> ops;
+
+        public TPPOperator(List<Token> tokens, List<TPPOperation> ops){
+            this.tokens = tokens;
+            this.ops = ops;
+        }
+
+        private void VerifyOpsChain(){
+            
+        }
+
+        public 
     }
 }
