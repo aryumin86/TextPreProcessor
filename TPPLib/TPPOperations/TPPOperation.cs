@@ -14,7 +14,7 @@ namespace TPPLib.TPPOperations
         /// операцией Execute();
         /// </summary>
 
-        private IEnumerable<Token> _tokesToProcess;
+        protected IEnumerable<Token> _tokesToProcess;
         /// <summary>
         /// Основная операция.
         /// </summary>
