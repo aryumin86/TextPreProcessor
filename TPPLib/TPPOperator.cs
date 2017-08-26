@@ -19,9 +19,9 @@ namespace TPPLib
         }
 
         private void VerifyOpsChain(){
-            
+            throw new NotImplementedException();
         }
 
-        public 
+         
     }
 }

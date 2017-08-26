@@ -8,5 +8,9 @@
     <Folder Include="Entities\" />
     <Folder Include="TPPOperations\" />
     <Folder Include="TPPResults\" />
+    <Folder Include="TextsImporters\" />
+    <Folder Include="LibDataWorkItems\" />
+    <Folder Include="Tokenizers\" />
+    <Folder Include="Stemmers\" />
   </ItemGroup>
 </Project>
