@@ -6,11 +6,8 @@ namespace TPPLib.TPPOperations
 {
     public class RemovePunctuation : TPPOperation
     {
-        public RemovePunctuation(IEnumerable<Token> tokens) : base(tokens)
-        {
-        }
 
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }
