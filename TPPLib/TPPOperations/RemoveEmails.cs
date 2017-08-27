@@ -10,14 +10,14 @@ namespace TPPLib.TPPOperations
         private readonly string _emailPattern = @"\b([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$\b";
         private Regex _emailRegex = null; 
 
-        public RemoveEmails(IEnumerable<Token> tokens) : base(tokens)
+        public RemoveEmails()
         {
             this._emailRegex = new Regex(_emailPattern, RegexOptions.Compiled | RegexOptions.Singleline);
         }
 
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
-            foreach(var token in _tokesToProcess){
+            foreach(var token in tokens){
                 _emailRegex.Replace(token.Content, " ");
             }
         }

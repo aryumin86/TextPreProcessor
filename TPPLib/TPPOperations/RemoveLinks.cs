@@ -9,11 +9,8 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveLinks : TPPOperation
     {
-        public RemoveLinks(IEnumerable<Token> tokens) : base(tokens)
-        {
-        }
 
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }

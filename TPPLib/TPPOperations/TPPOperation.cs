@@ -14,14 +14,9 @@ namespace TPPLib.TPPOperations
         /// операцией Execute();
         /// </summary>
 
-        protected IEnumerable<Token> _tokesToProcess;
         /// <summary>
         /// Основная операция.
         /// </summary>
-        public abstract void Execute();
-
-        public TPPOperation(IEnumerable<Token> tokens){
-            this._tokesToProcess = tokens;
-        }
+        public abstract void Execute(IEnumerable<Token> tokens);
     }
 }

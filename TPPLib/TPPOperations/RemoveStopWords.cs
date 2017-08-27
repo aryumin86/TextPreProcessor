@@ -14,12 +14,12 @@ namespace TPPLib.TPPOperations
         /// </summary>
         private static HashSet<string> _stopWords;
 
-        public RemoveStopWords(IEnumerable<Token> tokens) : base(tokens)
+        public RemoveStopWords()
         {
             //TODO список стоп слов должен выгружаться из файла, а его директория должна быть в конфиге (в каком?...)
         }
 
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }

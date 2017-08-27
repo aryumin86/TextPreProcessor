@@ -9,11 +9,7 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveHashTags : TPPOperation
     {
-        public RemoveHashTags(IEnumerable<Token> tokens) : base(tokens)
-        {
-        }
-
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }

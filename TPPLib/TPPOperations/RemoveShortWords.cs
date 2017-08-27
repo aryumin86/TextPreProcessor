@@ -9,13 +9,8 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveShortWords :  TPPOperation
     {
-        private static int _minWordLength = 3;
 
-        public RemoveShortWords(IEnumerable<Token> tokens) : base(tokens)
-        {
-        }
-
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }

@@ -10,18 +10,24 @@ namespace TPPLib
     /// </summary>
     public class TPPOperator
     {
-        List<Token> tokens;
-        List<TPPOperation> ops;
+        private List<Token> _tokens;
+        private List<TPPOperation> _ops;
 
         public TPPOperator(List<Token> tokens, List<TPPOperation> ops){
-            this.tokens = tokens;
-            this.ops = ops;
+            this._tokens = tokens;
+            this._ops = ops;
         }
 
         private void VerifyOpsChain(){
             throw new NotImplementedException();
         }
 
-         
+        /// <summary>
+        /// Выполняет все операции -ops над всеми токенами _tokens.
+        /// </summary>
+        public void Exucute(){
+            foreach (var o in _ops)
+                o.Execute(this._tokens);
+        }
     }
 }

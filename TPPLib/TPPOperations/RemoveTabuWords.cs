@@ -11,11 +11,12 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveTabuWords : TPPOperation
     {
-        public RemoveTabuWords(IEnumerable<Token> tokens) : base(tokens)
+        public RemoveTabuWords()
         {
+            //TODO доставать регулрные выражения табуированной лексики надо из файлика, указанного в конфиге
         }
 
-        public override void Execute()
+        public override void Execute(IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }
