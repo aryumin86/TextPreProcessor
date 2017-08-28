@@ -44,7 +44,7 @@ namespace TTPLibTests
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
 
-            Assert.True(tokens.Where(t => t is Word).Select(t => t.Content).All(t => string.IsNullOrEmpty(t)));
+            Assert.True(tokens.Where(t => t is Word).Select(t => t.Content).All(t => string.IsNullOrWhiteSpace(t)));
             Assert.True(tokens.Where(t => t is Sentence).Select(t => t.Content).All(t => !t.Contains("address@mail.ru")));
         }
 
