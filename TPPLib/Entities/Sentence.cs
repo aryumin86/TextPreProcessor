@@ -11,5 +11,13 @@ namespace TPPLib.Entities
         /// </summary>
         /// <value>The number in text.</value>
         public int NumInText { get; set; }
+
+        public Sentence() { }
+
+        public Sentence(string textId, string Content)
+        {
+            this.TextId = textId;
+            this.Content = Content;
+        }
     }
 }
