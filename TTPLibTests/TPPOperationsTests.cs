@@ -120,7 +120,7 @@ namespace TTPLibTests
                 new Word(null, "<абв>"),
                 new Word(null, "</абв>"),
                 new Sentence(null, "текст <a>smth</a> текст"),
-                new Sentence(null, "текст <абв>smth</абв> текст")
+                new Sentence(null, "текст <абв>smth</абв> трр  <another>что-то</another> текст")
             };
 
             return withHtmlOrJsTagsStrings;
