@@ -10,13 +10,19 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveHtmlAndJs : TPPOperation
     {
-        private Regex _regex = new Regex(@"<[^>]*>", RegexOptions.Compiled 
+        private Regex _regex1 = new Regex(@"<[^>]*</[^>]*>", RegexOptions.Compiled
+            | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+        private Regex _regex2 = new Regex(@"<[^>]*>", RegexOptions.Compiled 
             | RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
         public override void Execute(IEnumerable<Token> tokens)
         {
             foreach (var t in tokens)
-                t.Content = _regex.Replace(t.Content, " ");
+            {
+                t.Content = _regex1.Replace(t.Content, " ");
+                t.Content = _regex2.Replace(t.Content, " ");
+            }
+               
         }
     }
 }
