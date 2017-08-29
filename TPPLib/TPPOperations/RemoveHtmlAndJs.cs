@@ -10,7 +10,7 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveHtmlAndJs : TPPOperation
     {
-        private Regex _regex1 = new Regex(@"<[^>]*</[^>]*>", RegexOptions.Compiled
+        private Regex _regex1 = new Regex(@"<[\s\S]*?</[^>]*>", RegexOptions.Compiled
             | RegexOptions.Singleline | RegexOptions.IgnoreCase);
         private Regex _regex2 = new Regex(@"<[^>]*>", RegexOptions.Compiled 
             | RegexOptions.Singleline | RegexOptions.IgnoreCase);

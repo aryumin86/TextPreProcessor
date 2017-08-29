@@ -5,6 +5,7 @@ using Xunit;
 using System.Collections.Generic;
 using TPPLib.Entities;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TTPLibTests
 {
@@ -107,9 +108,9 @@ namespace TTPLibTests
             @operator.Exucute();
 
             Assert.True(tokens.Where(t => t is Word)
-                .All(t => !string.IsNullOrWhiteSpace(t.Content)));
-            Assert.True(tokens.Where(t => t is Sentence)
-                .All(t => !t.Content.Contains("<") || !t.Content.Contains(">")));
+                .All(t => string.IsNullOrWhiteSpace(t.Content)));
+            Assert.False(tokens.Where(t => t is Sentence)
+                .Any(t => Regex.IsMatch(t.Content, @"(<[^>]*>)|(<[\s\S]*?</[^>]*>)")));
         }
 
         private static List<Token> GetTokensWithHtmlOrJsTagsToRemove()
