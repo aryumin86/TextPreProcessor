@@ -172,9 +172,29 @@ namespace TTPLibTests
 
         [Fact]
         [Trait("Category", "Unit")]
-        public void Punctuation_Should_Be_Removed_From_Raw_Text()
+        public void Punctuation_Should_Be_Removed_From_Text()
         {
+            List<TPPOperation> ops = new List<TPPOperation>{
+                new RemovePunctuation()
+            };
 
+            var tokens = GetStringsWithPunctuationToremove();
+
+            @operator = new TPPOperator(tokens, ops);
+            @operator.Exucute();
+
+            Assert.False(tokens.Any(t => Regex.IsMatch(t.Content, @"[^\dа-яa-z\s]")));
+        }
+
+        private List<Token> GetStringsWithPunctuationToremove()
+        {
+            List<Token> withLiksStrings = new List<Token>
+            {
+                new Word(null, "-!@#$%^&*()_+=арбуз\"'<>№;%:?*"),
+                new Sentence(null, "текст . -!@#$%^&*()_+=арбуз\"'<>№;%:?* текст , ")
+            };
+
+            return withLiksStrings;
         }
 
         [Fact]
