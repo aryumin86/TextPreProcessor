@@ -230,21 +230,78 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Single_Standing_Numbers_Should_Be_Removed_From_AnyType_Token()
         {
+            List<TPPOperation> ops = new List<TPPOperation>{
+                new RemoveSingleStayingNumbers()
+            };
 
+            var tokens = GetSingleStayingNumbersToRemove();
+
+            @operator = new TPPOperator(tokens, ops);
+            @operator.Exucute();
+
+            Assert.False(tokens.Any(t => Regex.IsMatch(t.Content, @"\b\d+\b")));
         }
+
+        private List<Token> GetSingleStayingNumbersToRemove()
+        {
+            List<Token> singleNums = new List<Token>
+            {
+                new Word(null, "1"),
+                new Word(null, "22"),
+                new Word(null, "333"),
+                new Word(null, "0"),
+
+                new Sentence(null, "текст 1 текст"),
+                new Sentence(null, "текст 11 текст"),
+            };
+
+            return singleNums;
+        } 
 
         [Fact]
         [Trait("Category", "Unit")]
         public void Stop_Words_Should_Be_Removed_From_WordsTokens()
         {
+            //русский язык
 
+
+
+            //английский язык
+
+
+        }
+
+        private HashSet<string> GetStopWords()
+        {
+            return null;
+        }
+
+        private List<Token> GetTokensWithStopWordsToRemove()
+        {
+            return null;
         }
 
         [Fact]
         [Trait("Category", "Unit")]
         public void Tabu_Words_Should_Be_Removed_From_WordsTokens()
         {
+            //русский язык
 
+
+
+            //английский язык
+
+
+        }
+
+        private string GetTabuWordsRegex()
+        {
+            return null;
+        } 
+
+        private List<Token> GetTokensWithTabuWords()
+        {
+            return null;
         }
 
 
