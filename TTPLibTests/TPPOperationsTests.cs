@@ -131,7 +131,43 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Links_Should_Be_Removed_From_AnyTypeToken()
         {
+            List<TPPOperation> ops = new List<TPPOperation>{
+                new RemoveLinks()
+            };
 
+            var tokens = GetTokensWithLinksToRemove();
+
+            @operator = new TPPOperator(tokens, ops);
+            @operator.Exucute();
+
+            Assert.True(tokens.Where(t => t is Word)
+                .All(t => string.IsNullOrWhiteSpace(t.Content)));
+            Assert.False(tokens.Where(t => t is Sentence)
+                .Any(t => Regex.IsMatch(t.Content, @"\bhttps?:\/\/(www\.)?[-a-zа-я0-9@:%._\+~#=]{2,256}\.[a-zа-я]{2,6}\b([-a-zа-я0-9@:%_\+.~#?&//=]*)\b")));
+            Assert.False(tokens.Where(t => t is Sentence)
+                .Any(t => Regex.IsMatch(t.Content, @"\bxn--\S*\b")));
+        }
+
+        private static List<Token> GetTokensWithLinksToRemove()
+        {
+            List<Token> withLiksStrings = new List<Token>
+            {
+                new Word(null, "http://haha.ru"),
+                new Word(null, "https://haha.ru/hoho?smth=123&a=no"),
+                new Word(null, "xn--d1acufc"),
+                new Word(null, "http://субдомен.домен.рф/какой-то-путь"),
+                new Word(null, "http://www.haha.ru"),
+                new Word(null, "http://content-analysis.ru"),
+
+                new Sentence(null, "текст http://haha.ru текст"),
+                new Sentence(null, "текст https://haha.ru/hoho?smth=123&a=no текст"),
+                new Sentence(null, "текст xn--d1acufc текст"),
+                new Sentence(null, "текст http://субдомен.домен.рф/какой-то-путь текст"),
+                new Sentence(null, "текст http://www.haha.ru текст http://haha.ru"),
+                new Sentence(null, "текст http://content-analysis.ru текст"),
+            };
+
+            return withLiksStrings;
         }
 
         [Fact]
