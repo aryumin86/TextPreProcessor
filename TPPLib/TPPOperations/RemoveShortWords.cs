@@ -9,10 +9,13 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveShortWords :  TPPOperation
     {
-
         public override void Execute(IEnumerable<Token> tokens)
         {
-            throw new NotImplementedException();
+            foreach(var t in tokens)
+            {
+                if (t.Content.Length < 3)
+                    t.Content = string.Empty;
+            }
         }
     }
 }

@@ -201,7 +201,29 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Short_Words_Should_Be_Removed_From_WordsTokens()
         {
+            List<TPPOperation> ops = new List<TPPOperation>{
+                new RemoveShortWords()
+            };
 
+            var tokens = GetShortWordsToRemove();
+
+            @operator = new TPPOperator(tokens, ops);
+            @operator.Exucute();
+
+            Assert.False(tokens.Any(t => t.Content.Length < 3 && !string.IsNullOrWhiteSpace(t.Content)));
+        }
+
+        private List<Token> GetShortWordsToRemove()
+        {
+            List<Token> withLiksStrings = new List<Token>
+            {
+                new Word(null, "привет"),
+                new Word(null, "да"),
+                new Word(null, "я"),
+                new Word(null, "нет")
+            };
+
+            return withLiksStrings;
         }
 
         [Fact]
