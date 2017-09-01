@@ -24,7 +24,7 @@ namespace TTPLibTests
                 new RemoveEmails()
             };
 
-            var tokens = GeTokensContainingtEmailsToRemove();
+            IEnumerable<Token> tokens = GeTokensContainingtEmailsToRemove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -55,7 +55,7 @@ namespace TTPLibTests
                 new RemoveHashTags()
             };
 
-            var tokens = GetTokensContainingHashTagsToRemove();
+            IEnumerable<Token> tokens = GetTokensContainingHashTagsToRemove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -102,7 +102,7 @@ namespace TTPLibTests
                 new RemoveHtmlAndJs()
             };
 
-            var tokens = GetTokensWithHtmlOrJsTagsToRemove();
+            IEnumerable<Token> tokens = GetTokensWithHtmlOrJsTagsToRemove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -135,7 +135,7 @@ namespace TTPLibTests
                 new RemoveLinks()
             };
 
-            var tokens = GetTokensWithLinksToRemove();
+            IEnumerable<Token> tokens = GetTokensWithLinksToRemove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -178,7 +178,7 @@ namespace TTPLibTests
                 new RemovePunctuation()
             };
 
-            var tokens = GetStringsWithPunctuationToremove();
+            IEnumerable<Token> tokens = GetStringsWithPunctuationToremove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -205,7 +205,7 @@ namespace TTPLibTests
                 new RemoveShortWords()
             };
 
-            var tokens = GetShortWordsToRemove();
+            IEnumerable<Token> tokens = GetShortWordsToRemove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -234,7 +234,7 @@ namespace TTPLibTests
                 new RemoveSingleStayingNumbers()
             };
 
-            var tokens = GetSingleStayingNumbersToRemove();
+            IEnumerable<Token> tokens = GetSingleStayingNumbersToRemove();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -270,7 +270,7 @@ namespace TTPLibTests
             };
 
             //английский язык
-            var tokens = GetWordsWithStopWords();
+            IEnumerable<Token> tokens = GetWordsWithStopWords();
 
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
@@ -280,7 +280,7 @@ namespace TTPLibTests
 
         }
 
-        private List<Token> GetWordsWithStopWords()
+        private IEnumerable<Token> GetWordsWithStopWords()
         {
             List<Token> someOfWordsAreStopWords = new List<Token>
             {

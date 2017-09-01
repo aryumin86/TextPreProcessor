@@ -17,7 +17,7 @@ namespace TPPLib.TPPOperations
             _stemmer = stemmer;
         }
 
-		public override void Execute(ref IEnumerable<Token> tokens)
+		public override void Execute(IEnumerable<Token> tokens)
 		{
             if (!tokens.All(t => t is Word))
                 throw new ArgumentException("Tokenizing is avaliable only for tokens of type Word");

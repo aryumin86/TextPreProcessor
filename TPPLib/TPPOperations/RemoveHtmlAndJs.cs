@@ -15,7 +15,7 @@ namespace TPPLib.TPPOperations
         private Regex _regex2 = new Regex(@"<[^>]*>", RegexOptions.Compiled 
             | RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-        public override void Execute(ref IEnumerable<Token> tokens)
+        public override void Execute(IEnumerable<Token> tokens)
         {
             foreach (var t in tokens)
             {

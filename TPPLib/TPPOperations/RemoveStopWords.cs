@@ -40,10 +40,15 @@ namespace TPPLib.TPPOperations
                 englishStopWords.Clear();
         }
 
-        public override void Execute(ref IEnumerable<Token> tokens)
+        public override void Execute(IEnumerable<Token> tokens)
         {
-            tokens = tokens.Where(t => !russianStopWords.Contains(t.Content));
-            tokens = tokens.Where(t => !englishStopWords.Contains(t.Content));
+            foreach(var t in tokens){
+                if (russianStopWords.Contains(t.Content))
+                    t.Content = string.Empty;
+
+                if (englishStopWords.Contains(t.Content))
+                    t.Content = string.Empty;
+            }
         }
     }
 }

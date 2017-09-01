@@ -9,7 +9,7 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveShortWords :  TPPOperation
     {
-        public override void Execute(ref IEnumerable<Token> tokens)
+        public override void Execute(IEnumerable<Token> tokens)
         {
             foreach(var t in tokens)
             {

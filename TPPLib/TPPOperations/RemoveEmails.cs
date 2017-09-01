@@ -15,7 +15,7 @@ namespace TPPLib.TPPOperations
             this._emailRegex = new Regex(_emailPattern, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
         }
 
-        public override void Execute(ref IEnumerable<Token> tokens)
+        public override void Execute(IEnumerable<Token> tokens)
         {
             foreach(var token in tokens){
                 token.Content = _emailRegex.Replace(token.Content, " ");

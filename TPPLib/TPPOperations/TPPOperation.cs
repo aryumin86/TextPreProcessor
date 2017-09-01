@@ -10,13 +10,8 @@ namespace TPPLib.TPPOperations
     public abstract class TPPOperation
     {
         /// <summary>
-        /// Коллекция токенов, каждый из которых должен быть подвергнут обработке 
-        /// операцией Execute();
-        /// </summary>
-
-        /// <summary>
         /// Основная операция.
         /// </summary>
-        public abstract void Execute(ref IEnumerable<Token> tokens);
+        public abstract void Execute(IEnumerable<Token> tokens);
     }
 }
