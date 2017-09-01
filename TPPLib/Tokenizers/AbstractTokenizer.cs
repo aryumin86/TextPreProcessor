@@ -15,7 +15,7 @@ namespace TPPLib.Tokenizers
         /// </summary>
         /// <returns>The to word.</returns>
         /// <param name="raw">Raw.</param>
-        public abstract IEnumerable<Word> TokenizeToWord(RawText raw);
+        public abstract IEnumerable<Word> TokenizeToWords(RawText raw);
 
         /// <summary>
         /// Токенизация для получения предложений исходного текста.

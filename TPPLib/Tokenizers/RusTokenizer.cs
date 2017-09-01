@@ -19,7 +19,7 @@ namespace TPPLib.Tokenizers
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<Word> TokenizeToWord(RawText raw)
+        public override IEnumerable<Word> TokenizeToWords(RawText raw)
         {
             throw new NotImplementedException();
         }
