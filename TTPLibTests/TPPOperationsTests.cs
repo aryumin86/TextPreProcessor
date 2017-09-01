@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TPPLib.Entities;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TPPLib.Stemmers;
 
 namespace TTPLibTests
 {
@@ -91,7 +92,28 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Words_Should_Be_Stemmed()
         {
+			List<TPPOperation> ops = new List<TPPOperation>{
+				new MakeStemming(new RusStemmer())
+			};
 
+			IEnumerable<Token> tokens = GetWordsToStemm();
+
+			@operator = new TPPOperator(tokens, ops);
+			@operator.Exucute();
+
+            Assert.True(tokens.Select(t => t.Content)
+                        .Intersect(GetWordsToStemm().Select(tt => tt.Content)).Count() == 0);
+        }
+
+        private List<Word> GetWordsToStemm(){
+            
+			List<Word> wordsToStem = new List<Word>
+			{
+				new Word(null, "корова"),
+				new Word(null, "стрекоза")
+			};
+
+			return wordsToStem;
         }
 
         [Fact]

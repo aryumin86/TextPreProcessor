@@ -11,11 +11,11 @@ namespace TPPLib.TPPOperations
     /// </summary>
     public class RemoveTabuWords : TPPOperation
     {
-        private string replacer = string.Empty;
+        private string _replacer;
 
-        public RemoveTabuWords()
+        public RemoveTabuWords(string replacer = "")
         {
-            
+            _replacer = replacer;
         }
 
         public override void Execute(IEnumerable<Token> tokens)
