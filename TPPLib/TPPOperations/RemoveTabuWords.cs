@@ -16,7 +16,7 @@ namespace TPPLib.TPPOperations
             //TODO доставать регулрные выражения табуированной лексики надо из файлика, указанного в конфиге
         }
 
-        public override void Execute(IEnumerable<Token> tokens)
+        public override void Execute(ref IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }

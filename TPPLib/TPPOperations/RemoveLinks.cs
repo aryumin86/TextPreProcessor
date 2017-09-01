@@ -17,7 +17,7 @@ namespace TPPLib.TPPOperations
         private Regex _punyCodeUrl = new Regex(@"\b(xn--)\S+?\b", RegexOptions.Compiled
             | RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-        public override void Execute(IEnumerable<Token> tokens)
+        public override void Execute(ref IEnumerable<Token> tokens)
         {
             foreach (var t in tokens)
             {

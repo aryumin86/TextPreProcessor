@@ -10,7 +10,7 @@ namespace TPPLib.TPPOperations
         private Regex _regex = new Regex(@"[^\dа-яa-z\s]",
             RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-        public override void Execute(IEnumerable<Token> tokens)
+        public override void Execute(ref IEnumerable<Token> tokens)
         {
             foreach (var t in tokens)
             {

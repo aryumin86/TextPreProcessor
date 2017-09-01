@@ -10,7 +10,7 @@ namespace TPPLib
     /// </summary>
     public class TPPOperator
     {
-        private List<Token> _tokens;
+        private IEnumerable<Token> _tokens;
         private List<TPPOperation> _ops;
 
         public TPPOperator(List<Token> tokens, List<TPPOperation> ops){
@@ -27,7 +27,7 @@ namespace TPPLib
         /// </summary>
         public void Exucute(){
             foreach (var o in _ops)
-                o.Execute(this._tokens);
+                o.Execute(ref _tokens);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace TPPLib.TPPOperations
     public class Lemmatize : TPPOperation
     {
 
-        public override void Execute(IEnumerable<Token> tokens)
+        public override void Execute(ref IEnumerable<Token> tokens)
         {
             throw new NotImplementedException();
         }

@@ -262,18 +262,39 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Stop_Words_Should_Be_Removed_From_WordsTokens()
         {
+            RemoveStopWords rsw = new RemoveStopWords(true, true);
+
             //русский язык
-
-
+            List<TPPOperation> ops = new List<TPPOperation>{
+               rsw
+            };
 
             //английский язык
+            var tokens = GetWordsWithStopWords();
 
+            @operator = new TPPOperator(tokens, ops);
+            @operator.Exucute();
+
+            Assert.False(tokens.Select(t => t.Content)
+                .Intersect((rsw.englishStopWords.Union(rsw.russianStopWords))).Count() > 0);
 
         }
 
-        private HashSet<string> GetStopWords()
+        private List<Token> GetWordsWithStopWords()
         {
-            return null;
+            List<Token> someOfWordsAreStopWords = new List<Token>
+            {
+                new Word(null, "да"),
+                new Word(null, "попугай"),
+                new Word(null, "под"),
+                new Word(null, "рыбка"),
+
+                new Word(null, "no"),
+                new Word(null, "fish"),
+                new Word(null, "yes")
+            };
+
+            return someOfWordsAreStopWords;
         }
 
         private List<Token> GetTokensWithStopWordsToRemove()
