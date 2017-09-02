@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TPPLib.Entities;
+using System.Linq;
 
 namespace TPPLib.Tokenizers
 {
@@ -21,7 +22,15 @@ namespace TPPLib.Tokenizers
 
         public override IEnumerable<Word> TokenizeToWords(RawText raw)
         {
-            throw new NotImplementedException();
+            List<Word> res = new List<Word>();
+
+            char[] delims = new char[]{
+                ' ','-','/','\\','!','@','#','%','^','&','*','(',')','_','+','=','{',']','[',']','\"',
+                '№',',','.',':',';','±','<','>','~','|','?','$'
+            };
+
+            return raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
+                      .Select(t => new Word { TextId = raw.Id, Content = t });
         }
     }
 }
