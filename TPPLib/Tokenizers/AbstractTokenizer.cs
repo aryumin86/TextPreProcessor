@@ -22,13 +22,29 @@ namespace TPPLib.Tokenizers
         /// </summary>
         /// <returns>The to NG ramms.</returns>
         /// <param name="raw">Raw.</param>
-        public abstract IEnumerable<Sentence> TokenizeToSentences(RawText raw);
+        public IEnumerable<Sentence> TokenizeToSentences(RawText raw)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Токенизация для получения параграфов исходного текста.
         /// </summary>
         /// <returns>The to paragraphs.</returns>
         /// <param name="raw">Raw.</param>
-        public abstract IEnumerable<Paragraph> TokenizeToParagraphs(RawText raw);
+        public IEnumerable<Paragraph> TokenizeToParagraphs(RawText raw)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Токенизация на массивы предложений.
+        /// </summary>
+        /// <param name="num">Желательная длина массивов предложений</param>
+        /// <returns></returns>
+        public IEnumerable<List<Sentence>> TokenizeToSentencesLists(int num)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

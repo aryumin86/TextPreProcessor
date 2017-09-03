@@ -23,12 +23,12 @@ namespace TPPLib.TPPOperations
 
         public RemoveStopWords(bool russian, bool english)
         {
-            russianStopWords = new HashSet<string>(File.ReadAllLines("../../../../TPPLib/LibDataWorkItems/RusStopWords.txt")
+            russianStopWords = new HashSet<string>(File.ReadAllLines("~/../../TPPLib/LibDataWorkItems/RusStopWords.txt")
                 .Where(l => !l.StartsWith("#"))
                 .Select(l => l.Trim())
                 .ToArray());
 
-            englishStopWords = new HashSet<string>(File.ReadAllLines("../../../../TPPLib/LibDataWorkItems/EngStopWords.txt")
+            englishStopWords = new HashSet<string>(File.ReadAllLines("~/../../TPPLib/LibDataWorkItems/EngStopWords.txt")
                 .Where(l => !l.StartsWith("#"))
                 .Select(l => l.Trim())
                 .ToArray());
@@ -43,10 +43,10 @@ namespace TPPLib.TPPOperations
         public override void Execute(IEnumerable<Token> tokens)
         {
             foreach(var t in tokens){
-                if (russianStopWords.Contains(t.Content))
+                if (russianStopWords.Contains(t.Content.Trim()))
                     t.Content = string.Empty;
 
-                if (englishStopWords.Contains(t.Content))
+                if (englishStopWords.Contains(t.Content.Trim()))
                     t.Content = string.Empty;
             }
         }

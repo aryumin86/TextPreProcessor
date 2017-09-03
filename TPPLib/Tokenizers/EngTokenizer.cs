@@ -9,16 +9,6 @@ namespace TPPLib.Tokenizers
     /// </summary>
     public class EngTokenizer : AbstractTokenizer
     {
-        public override IEnumerable<Paragraph> TokenizeToParagraphs(RawText raw)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override IEnumerable<Sentence> TokenizeToSentences(RawText raw)
-        {
-            throw new NotImplementedException();
-        }
-
         public override IEnumerable<Word> TokenizeToWords(RawText raw)
         {
             throw new NotImplementedException();

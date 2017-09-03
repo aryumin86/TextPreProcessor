@@ -11,8 +11,10 @@ namespace TPPLib
     /// </summary>
     public class BasicTextCleaner
     {
-        public string MakeBasicCleaning(RawText raw){
-            throw new NotImplementedException();
+        public void MakeBasicCleaning(RawText raw){
+            raw.Content = raw.Content.ToLower();
+            raw.Content = Regex.Replace(raw.Content, 
+                @"\s+", " ", RegexOptions.Compiled | RegexOptions.Singleline);
         }
 
         public IEnumerable<Token> MakeBasicCleaning(IEnumerable<Token> tokens){
