@@ -25,13 +25,13 @@ namespace TPPLib.Entities
         /// <summary>
         /// Дочерние токены (могут быть словами, абзацами, предложениями и др.
         /// </summary>
-        public List<Token> Tokens = new List<Token>();
+        public List<Token> ChildrenTokens = new List<Token>();
 
         /// <summary>
-        /// Родительский токен.
+        /// Родительский токен. Может быть только не у RawText.
         /// </summary>
         /// <value>The parent.</value>
-        public Token Parent { get; set; }
+        public Token ParentToken { get; set; }
 
         /// <summary>
         /// Позиция (индекс) токена в родительском токене.

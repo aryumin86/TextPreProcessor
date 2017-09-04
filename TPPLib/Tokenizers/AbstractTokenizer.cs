@@ -13,25 +13,22 @@ namespace TPPLib.Tokenizers
         /// <summary>
         /// Токенизация для получения отдельных слов.
         /// </summary>
-        /// <returns>The to word.</returns>
-        /// <param name="raw">Raw.</param>
+        /// <returns>Массив слов</returns>
+        /// <param name="raw">Исходный текст</param>
         public abstract IEnumerable<Word> TokenizeToWords(Token raw);
 
         /// <summary>
         /// Токенизация для получения предложений исходного текста.
         /// </summary>
-        /// <returns>The to NG ramms.</returns>
-        /// <param name="raw">Raw.</param>
-        public IEnumerable<Sentence> TokenizeToSentences(Token raw)
-        {
-            throw new NotImplementedException();
-        }
+        /// <returns>Массив слов</returns>
+        /// <param name="raw">Исходный текст</param>
+        public abstract IEnumerable<Sentence> TokenizeToSentences(Token raw);
 
         /// <summary>
         /// Токенизация для получения параграфов исходного текста.
         /// </summary>
-        /// <returns>The to paragraphs.</returns>
-        /// <param name="raw">Raw.</param>
+        /// <returns>Массив параграфов</returns>
+        /// <param name="raw">Исходный текст</param>
         public IEnumerable<Paragraph> TokenizeToParagraphs(Token raw)
         {
             throw new NotImplementedException();
@@ -40,11 +37,21 @@ namespace TPPLib.Tokenizers
         /// <summary>
         /// Токенизация на массивы предложений.
         /// </summary>
-        /// <param name="num">Желательная длина массивов предложений</param>
-        /// <returns></returns>
-        public IEnumerable<List<Sentence>> TokenizeToSentencesLists(int num)
+        /// <param name="num">Желательное количество ПРЕДЛОЖЕНИЙ</param>
+        /// <returns>массив массивов предложений</returns>
+        public IEnumerable<List<Sentence>> TokenizeToSentencesListsSentRange(int num)
         {
             throw new NotImplementedException();
         }
+
+		/// <summary>
+		/// Токенизация на массив предложений.
+		/// </summary>
+		/// <returns></returns>
+		/// <param name="num">Желательное количество СЛОВ</param>
+		public IEnumerable<List<Sentence>> TokenizeToSentencesListsWordsRange(int num)
+		{
+			throw new NotImplementedException();
+		}
     }
 }
