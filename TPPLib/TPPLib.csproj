@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="TPPOperations\" />
     <Folder Include="TPPResults\" />
     <Folder Include="TextsImporters\" />
     <Folder Include="LibDataWorkItems\" />

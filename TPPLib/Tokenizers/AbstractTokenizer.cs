@@ -15,14 +15,14 @@ namespace TPPLib.Tokenizers
         /// </summary>
         /// <returns>The to word.</returns>
         /// <param name="raw">Raw.</param>
-        public abstract IEnumerable<Word> TokenizeToWords(RawText raw);
+        public abstract IEnumerable<Word> TokenizeToWords(Token raw);
 
         /// <summary>
         /// Токенизация для получения предложений исходного текста.
         /// </summary>
         /// <returns>The to NG ramms.</returns>
         /// <param name="raw">Raw.</param>
-        public IEnumerable<Sentence> TokenizeToSentences(RawText raw)
+        public IEnumerable<Sentence> TokenizeToSentences(Token raw)
         {
             throw new NotImplementedException();
         }
@@ -32,7 +32,7 @@ namespace TPPLib.Tokenizers
         /// </summary>
         /// <returns>The to paragraphs.</returns>
         /// <param name="raw">Raw.</param>
-        public IEnumerable<Paragraph> TokenizeToParagraphs(RawText raw)
+        public IEnumerable<Paragraph> TokenizeToParagraphs(Token raw)
         {
             throw new NotImplementedException();
         }

@@ -9,7 +9,7 @@ namespace TPPLib.Tokenizers
     /// </summary>
     public class EngTokenizer : AbstractTokenizer
     {
-        public override IEnumerable<Word> TokenizeToWords(RawText raw)
+        public override IEnumerable<Word> TokenizeToWords(Token raw)
         {
             throw new NotImplementedException();
         }

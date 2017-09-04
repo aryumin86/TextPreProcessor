@@ -16,7 +16,7 @@ namespace TTPLibTests
 		{
             RawText rawText = new RawText()
             {
-                Id = "1",
+                TextId = "1",
                 Content = "Это какой-то #текст... Это второе предложение!.. Всё?"
             };
 
@@ -31,7 +31,7 @@ namespace TTPLibTests
         public void RusTokenizer_Cleans_Punctuation(){
 			RawText rawText = new RawText()
 			{
-				Id = "1",
+				TextId = "1",
                 Content = "Это какой-то #текст... Это второе предложение!.. Всё?!@#$%^&*()_+-=|\\\".,~!№%::,,.;"
 			};
 
@@ -47,7 +47,7 @@ namespace TTPLibTests
 
 			RawText rawText = new RawText()
 			{
-				Id = "1",
+				TextId = "1",
                 Content = @"
 Это какой-то #текст... Это второе предложение! (Всё?) 
  Вот тут нету точки и др 

@@ -7,10 +7,7 @@ using System.Text.RegularExpressions;
 namespace TPPLib
 {
     /// <summary>
-    /// Класс базовой очистки текстов.
-    /// Думал, что здесь будет значительно методов, но,видимо,
-    /// нередко может пригодится сделать очистку текстов с помощью этого
-    /// класса.
+    /// Класс базовой очистки текстов. 
     /// </summary>
     public class BasicTextCleaner
     {
@@ -18,16 +15,26 @@ namespace TPPLib
         /// Базовая очистка текста.
         /// </summary>
         /// <param name="raw"></param>
-        public void MakeBasicCleaning(RawText raw){
-            raw.Content = raw.Content.ToLower();
-            raw.Content = Regex.Replace(raw.Content, 
-                @"\s+", " ", RegexOptions.Compiled | RegexOptions.Singleline);
+        public IEnumerable<Token> MakeBasicCleaning(IEnumerable<Token> tokens)
+        {
+            foreach (var t in tokens)
+            {
+                t.Content = t.Content.ToLower();
+                t.Content = Regex.Replace(t.Content, @"\s+", " ",
+                                          RegexOptions.Compiled | RegexOptions.Singleline);
+                t.Content = t.Content.Trim();
+            }
+
+            tokens = tokens.Where(to => !string.IsNullOrWhiteSpace(to.Content));
+
+            return tokens;
         }
 
         /// <summary>
         /// Удаление email.
         /// </summary>
         /// <param name="raw"></param>
+        [Obsolete]
         public void RemoveEmails(RawText raw)
         {
 
@@ -37,6 +44,7 @@ namespace TPPLib
         /// Удаление хеш-тегов.
         /// </summary>
         /// <param name="raw"></param>
+        [Obsolete]
         public void RemoveHashTags(RawText raw)
         {
 
@@ -46,6 +54,7 @@ namespace TPPLib
         /// Удаление урлов.
         /// </summary>
         /// <param name="raw"></param>
+        [Obsolete]
         public void RemoveUrls(RawText raw)
         {
 
@@ -55,6 +64,7 @@ namespace TPPLib
         /// Удаление html и js тегов.
         /// </summary>
         /// <param name="raw"></param>
+        [Obsolete]
         public void RemoveHtmlAndJsTags(RawText raw)
         {
 
@@ -64,6 +74,7 @@ namespace TPPLib
         /// Удаление пунктуации.
         /// </summary>
         /// <param name="raw"></param>
+        [Obsolete]
         public void RemovePunctuation(RawText raw)
         {
 
@@ -73,18 +84,10 @@ namespace TPPLib
         /// Удаление одиночно стоящих цифр.
         /// </summary>
         /// <param name="raw"></param>
+        [Obsolete]
         public void RemoveSingleStaingNumbers(RawText raw)
         {
 
-        }
-
-        public IEnumerable<Token> MakeBasicCleaning(IEnumerable<Token> tokens){
-            tokens = tokens.Where(t => !string.IsNullOrWhiteSpace(t.Content));
-            foreach (var t in tokens)
-                t.Content = Regex.Replace(t.Content, @"\s+", " ", 
-                                          RegexOptions.Compiled | RegexOptions.Singleline);
-
-            return tokens;
         }
     }
 }

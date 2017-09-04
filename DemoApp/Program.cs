@@ -13,31 +13,45 @@ namespace DemoApp
     {
         static void Main(string[] args)
         {
-            List<RawText> texts = new List<RawText>()
+            var texts = new List<Token>()
             {
                new RawText
                {
-                   Id = "1",
+                   TextId = "1",
                    Content = "Это вот какой-то первый текст... Просто тупо текстик какой-то! abc@mail.ru"
                },
                new RawText
                {
-                   Id = "2",
+                   TextId = "2",
                    Content = "<bold>А  это вот</bold> какой-то второй текст... http://hahaha.ru Ужне значительно интереснее!"
                },new RawText
                {
-                   Id = "3",
+                   TextId = "3",
                    Content = "Ну и на последок третий текст! Вот так. Оп"
                }
             };
 
+            var cleaner = new BasicTextCleaner();
             var tokenizer = new RusTokenizer();
-            BasicTextCleaner cleaner = new BasicTextCleaner();
+            
             List<TPPOperation> ops = new List<TPPOperation>()
             {
                 new RemoveEmails(),
                 new RemoveLinks(),
                 new RemoveHtmlAndJs(),
+            };
+
+            var @operator = new TPPOperator(texts, ops);
+
+            foreach (var t in texts)
+            {                
+                @operator.Exucute();                
+            }
+
+            texts = cleaner.MakeBasicCleaning(texts).Select(to => (Token)to).ToList();
+
+            ops = new List<TPPOperation>()
+            {               
                 new RemoveShortWords(),
                 new RemovePunctuation(),
                 new RemoveStopWords(true, false),
@@ -46,12 +60,10 @@ namespace DemoApp
 
             foreach (var t in texts)
             {
-                cleaner.MakeBasicCleaning(t);
                 t.Tokens = tokenizer.TokenizeToWords(t).Select(to => (Token)to).ToList();
-
-                TPPOperator @operator = new TPPOperator(t.Tokens, ops);
+                @operator = new TPPOperator(t.Tokens, ops);
                 @operator.Exucute();
-                t.Tokens = cleaner.MakeBasicCleaning(t.Tokens).ToList();
+                t.Tokens = cleaner.MakeBasicCleaning(t.Tokens).Select(to => (Token)to).ToList();
             };
 
             Console.ReadLine();

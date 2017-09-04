@@ -12,5 +12,10 @@ namespace TPPLib.Entities
     {
         public string Content { get; set; }
         public string TextId { get; set; }
+
+        /// <summary>
+        /// Дочерние токены (могут быть словами, абзацами, предложениями и др.
+        /// </summary>
+        public List<Token> Tokens = new List<Token>();
     }
 }

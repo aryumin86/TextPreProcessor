@@ -10,7 +10,7 @@ namespace TPPLib.Tokenizers
     /// </summary>
     public class RusTokenizer : AbstractTokenizer
     {
-        public override IEnumerable<Word> TokenizeToWords(RawText raw)
+        public override IEnumerable<Word> TokenizeToWords(Token raw)
         {
             List<Word> res = new List<Word>();
 
@@ -19,7 +19,7 @@ namespace TPPLib.Tokenizers
             };
 
             return raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
-                      .Select(t => new Word { TextId = raw.Id, Content = t.Trim() }).ToList();
+                      .Select(t => new Word { TextId = raw.TextId, Content = t.Trim() }).ToList();
         }
     }
 }
