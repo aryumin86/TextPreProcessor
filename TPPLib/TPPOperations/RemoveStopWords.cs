@@ -21,14 +21,27 @@ namespace TPPLib.TPPOperations
         /// </summary>
         public HashSet<string> englishStopWords;
 
-        public RemoveStopWords(bool russian, bool english)
+        /// <summary>
+        /// Удалятель стоп-слов. Решил пока что задавать пути к стоп словам в конструкторе, 
+        /// так как неясно, как сделать конфиг, одинаково пригодный для .net и .net core. 
+        /// </summary>
+        /// <param name="russian"></param>
+        /// <param name="english"></param>
+        /// <param name="pathToRus"></param>
+        /// <param name="pathToEng"></param>
+        public RemoveStopWords(bool russian, bool english, string pathToRus = "", string pathToEng = "")
         {
-            russianStopWords = new HashSet<string>(File.ReadAllLines("~/../../TPPLib/LibDataWorkItems/RusStopWords.txt")
+            if(pathToRus == string.Empty)
+                pathToRus = "~/../../TPPLib/LibDataWorkItems/RusStopWords.txt";
+            if(pathToEng == string.Empty)
+                pathToEng = "~/../../TPPLib/LibDataWorkItems/EngStopWords.txt";
+
+            russianStopWords = new HashSet<string>(File.ReadAllLines(pathToRus)
                 .Where(l => !l.StartsWith("#"))
                 .Select(l => l.Trim())
                 .ToArray());
 
-            englishStopWords = new HashSet<string>(File.ReadAllLines("~/../../TPPLib/LibDataWorkItems/EngStopWords.txt")
+            englishStopWords = new HashSet<string>(File.ReadAllLines(pathToEng)
                 .Where(l => !l.StartsWith("#"))
                 .Select(l => l.Trim())
                 .ToArray());

@@ -284,7 +284,9 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Stop_Words_Should_Be_Removed_From_WordsTokens()
         {
-            RemoveStopWords rsw = new RemoveStopWords(true, true);
+            RemoveStopWords rsw = new RemoveStopWords(true, true, 
+                pathToRus : "../../../../TPPLib/LibDataWorkItems/RusStopWords.txt", 
+                pathToEng : "../../../../TPPLib/LibDataWorkItems/EngStopWords.txt");
 
             //русский язык
             List<TPPOperation> ops = new List<TPPOperation>{
