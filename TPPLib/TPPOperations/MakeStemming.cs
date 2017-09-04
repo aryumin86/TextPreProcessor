@@ -19,7 +19,7 @@ namespace TPPLib.TPPOperations
 
 		public override void Execute(IEnumerable<Token> tokens)
 		{
-            if (!tokens.All(t => t is Word))
+            if (!tokens.All(t => t.TokenType == TokenType.WORD))
                 throw new ArgumentException("Tokenizing is avaliable only for tokens of type Word");
 
             foreach (var t in tokens)

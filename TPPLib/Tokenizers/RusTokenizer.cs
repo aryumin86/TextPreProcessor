@@ -11,11 +11,11 @@ namespace TPPLib.Tokenizers
     /// </summary>
     public class RusTokenizer : AbstractTokenizer
     {
-		public override IEnumerable<Sentence> TokenizeToSentences(Token raw)
+		public override IEnumerable<Token> TokenizeToSentences(Token raw)
 		{
             string substitutor = "_POINT_";
 
-			List<Sentence> res = new List<Sentence>();
+			List<Token> res = new List<Token>();
 
 			char[] delims = new char[]{
 				'\n' , '.', '?', '!'
@@ -29,12 +29,13 @@ namespace TPPLib.Tokenizers
             int pos = 0;
 
             res = raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
-                     .Select(x => new Sentence()
+                     .Select(x => new Token()
                      {
                          Content = x,
                          ParentToken = raw,
                          TextId = raw.TextId,
-                         PositionInParent = pos++
+                         PositionInParent = pos++,
+                         TokenType = TokenType.SENTENCE
                      })
                      .ToList();
 
@@ -45,16 +46,16 @@ namespace TPPLib.Tokenizers
 			return res;
 		}
 
-        public override IEnumerable<Word> TokenizeToWords(Token raw)
+        public override IEnumerable<Token> TokenizeToWords(Token raw)
         {
-            List<Word> res = new List<Word>();
+            List<Token> res = new List<Token>();
 
             char[] delims = new char[]{
                 ' ','-','!',',',';','?'
             };
 
             return raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
-                      .Select(t => new Word { TextId = raw.TextId, Content = t.Trim() }).ToList();
+                      .Select(t => new Token { TextId = raw.TextId, Content = t.Trim(), TokenType = TokenType.WORD }).ToList();
         }
     }
 }

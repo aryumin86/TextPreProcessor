@@ -36,9 +36,10 @@ namespace TTPLibTests
             var words = new List<Token>();
 
             for (int i = 0; i < num; i++){
-                words.Add(new Word()
+                words.Add(new Token()
                 {
-                    Content = "слово" + i
+                    Content = "слово" + i,
+                    TokenType = TokenType.WORD
                 });
             }
 

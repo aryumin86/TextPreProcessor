@@ -15,21 +15,21 @@ namespace TPPLib.Tokenizers
         /// </summary>
         /// <returns>Массив слов</returns>
         /// <param name="raw">Исходный текст</param>
-        public abstract IEnumerable<Word> TokenizeToWords(Token raw);
+        public abstract IEnumerable<Token> TokenizeToWords(Token raw);
 
         /// <summary>
         /// Токенизация для получения предложений исходного текста.
         /// </summary>
         /// <returns>Массив слов</returns>
         /// <param name="raw">Исходный текст</param>
-        public abstract IEnumerable<Sentence> TokenizeToSentences(Token raw);
+        public abstract IEnumerable<Token> TokenizeToSentences(Token raw);
 
         /// <summary>
         /// Токенизация для получения параграфов исходного текста.
         /// </summary>
         /// <returns>Массив параграфов</returns>
         /// <param name="raw">Исходный текст</param>
-        public IEnumerable<Paragraph> TokenizeToParagraphs(Token raw)
+        public IEnumerable<Token> TokenizeToParagraphs(Token raw)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +39,7 @@ namespace TPPLib.Tokenizers
         /// </summary>
         /// <param name="num">Желательное количество ПРЕДЛОЖЕНИЙ</param>
         /// <returns>массив массивов предложений</returns>
-        public IEnumerable<List<Sentence>> TokenizeToSentencesListsSentRange(int num)
+        public IEnumerable<List<Token>> TokenizeToSentencesListsSentRange(int num)
         {
             throw new NotImplementedException();
         }
@@ -49,7 +49,7 @@ namespace TPPLib.Tokenizers
 		/// </summary>
 		/// <returns></returns>
 		/// <param name="num">Желательное количество СЛОВ</param>
-		public IEnumerable<List<Sentence>> TokenizeToSentencesListsWordsRange(int num)
+		public IEnumerable<List<Token>> TokenizeToSentencesListsWordsRange(int num)
 		{
 			throw new NotImplementedException();
 		}

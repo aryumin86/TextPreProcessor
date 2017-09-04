@@ -4,11 +4,10 @@ using System.Collections.Generic;
 namespace TPPLib.Entities
 {
     /// <summary>
-    /// Токен. В конкретной реализации может быть словом, n-граммой предложением, абзацем. 
-    /// Также это может быть полный текст - текст не подвергался предварительно токенизации.
-    /// Представляет собой обычный текст.
+    /// Токен. Какой-либо сегмент исходного текста 
+    /// или сам исходный текст целиком.
     /// </summary>
-    public abstract class Token
+    public class Token
     {
         /// <summary>
         /// Текстовое содержимое токена.
@@ -38,5 +37,22 @@ namespace TPPLib.Entities
         /// </summary>
         /// <value>The position in parent.</value>
         public int? PositionInParent { get; set; }
+
+        /// <summary>
+        /// Тип токена.
+        /// </summary>
+        public TokenType TokenType { get; set; }
+
+        public Token() { }
+
+        public Token(string textId, string content, TokenType tokenType, Token parent = null, List<Token> children = null,  int? positionInParent = null)
+        {
+            this.TextId = textId;
+            this.Content = content;
+            this.TokenType = tokenType;
+            this.ParentToken = parent;
+            this.ChildrenTokens = children;
+            this.PositionInParent = positionInParent;
+        }
     }
 }

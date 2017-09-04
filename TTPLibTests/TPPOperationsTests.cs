@@ -30,19 +30,19 @@ namespace TTPLibTests
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
 
-            Assert.True(tokens.Where(t => t is Word).Select(t => t.Content).All(t => string.IsNullOrWhiteSpace(t)));
-            Assert.True(tokens.Where(t => t is Sentence).Select(t => t.Content).All(t => !t.Contains("address@mail.ru")));
+            Assert.True(tokens.Where(t => t.TokenType == TokenType.WORD).Select(t => t.Content).All(t => string.IsNullOrWhiteSpace(t)));
+            Assert.True(tokens.Where(t => t.TokenType == TokenType.SENTENCE).Select(t => t.Content).All(t => !t.Contains("address@mail.ru")));
         }
 
         private static List<Token> GeTokensContainingtEmailsToRemove()
         {
             List<Token> emailStrings = new List<Token>
             {
-                new Word(null, "smth@mail.ru"),
-                new Word(null, "smth@mail.com"),
-                new Word(null, "мыло@почта.рф"),
-                new Sentence(null, "какой-то текст... address@mail.ru и еще текст"),
-                new Sentence(null,  "текст (address@mail.ru) текст")
+                new Token(null, "smth@mail.ru", TokenType.WORD),
+                new Token(null, "smth@mail.com", TokenType.WORD),
+                new Token(null, "мыло@почта.рф", TokenType.WORD),
+                new Token(null, "какой-то текст... address@mail.ru и еще текст", TokenType.SENTENCE),
+                new Token(null,  "текст (address@mail.ru) текст", TokenType.SENTENCE)
             };
 
             return emailStrings;
@@ -61,9 +61,9 @@ namespace TTPLibTests
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
 
-            Assert.True(tokens.Where(t => t is Word)
+            Assert.True(tokens.Where(t => t.TokenType == TokenType.WORD)
                 .All(t => !t.Content.Trim().StartsWith("#")));
-            Assert.True(tokens.Where(t => t is Sentence)
+            Assert.True(tokens.Where(t => t.TokenType == TokenType.SENTENCE)
                 .All(t => !t.Content.Contains("hash_Tag") || !t.Content.Contains("#")));
         }
 
@@ -71,10 +71,10 @@ namespace TTPLibTests
         {
             List<Token> hashTagsStrings = new List<Token>
             {
-                new Word(null, "#тег"),
-                new Word(null, "#hash_Tag"),
-                new Sentence(null, "текст #тег текст"),
-                new Sentence(null, "текст #hash_Tag текст")
+                new Token(null, "#тег", TokenType.WORD),
+                new Token(null, "#hash_Tag", TokenType.WORD),
+                new Token(null, "текст #тег текст", TokenType.SENTENCE),
+                new Token(null, "текст #hash_Tag текст", TokenType.SENTENCE)
             };
 
             return hashTagsStrings;
@@ -105,12 +105,12 @@ namespace TTPLibTests
                         .Intersect(GetWordsToStemm().Select(tt => tt.Content)).Count() == 0);
         }
 
-        private List<Word> GetWordsToStemm(){
+        private List<Token> GetWordsToStemm(){
             
-			List<Word> wordsToStem = new List<Word>
+			List<Token> wordsToStem = new List<Token>
 			{
-				new Word(null, "корова"),
-				new Word(null, "стрекоза")
+				new Token(null, "корова", TokenType.WORD),
+				new Token(null, "стрекоза", TokenType.WORD)
 			};
 
 			return wordsToStem;
@@ -129,9 +129,9 @@ namespace TTPLibTests
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
 
-            Assert.True(tokens.Where(t => t is Word)
+            Assert.True(tokens.Where(t => t.TokenType == TokenType.WORD)
                 .All(t => string.IsNullOrWhiteSpace(t.Content)));
-            Assert.False(tokens.Where(t => t is Sentence)
+            Assert.False(tokens.Where(t => t.TokenType == TokenType.SENTENCE)
                 .Any(t => Regex.IsMatch(t.Content, @"(<[^>]*>)|(<[\s\S]*?</[^>]*>)")));
         }
 
@@ -139,11 +139,11 @@ namespace TTPLibTests
         {
             List<Token> withHtmlOrJsTagsStrings = new List<Token>
             {
-                new Word(null, "<a>"),
-                new Word(null, "<абв>"),
-                new Word(null, "</абв>"),
-                new Sentence(null, "текст <a>smth</a> текст"),
-                new Sentence(null, "текст <абв>smth</абв> трр  <another>что-то</another> текст")
+                new Token(null, "<a>", TokenType.WORD),
+                new Token(null, "<абв>", TokenType.WORD),
+                new Token(null, "</абв>", TokenType.WORD),
+                new Token(null, "текст <a>smth</a> текст", TokenType.SENTENCE),
+                new Token(null, "текст <абв>smth</абв> трр  <another>что-то</another> текст", TokenType.SENTENCE)
             };
 
             return withHtmlOrJsTagsStrings;
@@ -162,11 +162,11 @@ namespace TTPLibTests
             @operator = new TPPOperator(tokens, ops);
             @operator.Exucute();
 
-            Assert.True(tokens.Where(t => t is Word)
+            Assert.True(tokens.Where(t => t.TokenType == TokenType.WORD)
                 .All(t => string.IsNullOrWhiteSpace(t.Content)));
-            Assert.False(tokens.Where(t => t is Sentence)
+            Assert.False(tokens.Where(t => t.TokenType == TokenType.SENTENCE)
                 .Any(t => Regex.IsMatch(t.Content, @"\bhttps?:\/\/(www\.)?[-a-zа-я0-9@:%._\+~#=]{2,256}\.[a-zа-я]{2,6}\b([-a-zа-я0-9@:%_\+.~#?&//=]*)\b")));
-            Assert.False(tokens.Where(t => t is Sentence)
+            Assert.False(tokens.Where(t => t.TokenType == TokenType.SENTENCE)
                 .Any(t => Regex.IsMatch(t.Content, @"\bxn--\S*\b")));
         }
 
@@ -174,19 +174,19 @@ namespace TTPLibTests
         {
             List<Token> withLiksStrings = new List<Token>
             {
-                new Word(null, "http://haha.ru"),
-                new Word(null, "https://haha.ru/hoho?smth=123&a=no"),
-                new Word(null, "xn--d1acufc"),
-                new Word(null, "http://субдомен.домен.рф/какой-то-путь"),
-                new Word(null, "http://www.haha.ru"),
-                new Word(null, "http://content-analysis.ru"),
+                new Token(null, "http://haha.ru", TokenType.WORD),
+                new Token(null, "https://haha.ru/hoho?smth=123&a=no", TokenType.WORD),
+                new Token(null, "xn--d1acufc", TokenType.WORD),
+                new Token(null, "http://субдомен.домен.рф/какой-то-путь", TokenType.WORD),
+                new Token(null, "http://www.haha.ru", TokenType.WORD),
+                new Token(null, "http://content-analysis.ru", TokenType.WORD),
 
-                new Sentence(null, "текст http://haha.ru текст"),
-                new Sentence(null, "текст https://haha.ru/hoho?smth=123&a=no текст"),
-                new Sentence(null, "текст xn--d1acufc текст"),
-                new Sentence(null, "текст http://субдомен.домен.рф/какой-то-путь текст"),
-                new Sentence(null, "текст http://www.haha.ru текст http://haha.ru"),
-                new Sentence(null, "текст http://content-analysis.ru текст"),
+                new Token(null, "текст http://haha.ru текст", TokenType.SENTENCE),
+                new Token(null, "текст https://haha.ru/hoho?smth=123&a=no текст", TokenType.SENTENCE),
+                new Token(null, "текст xn--d1acufc текст", TokenType.SENTENCE),
+                new Token(null, "текст http://субдомен.домен.рф/какой-то-путь текст", TokenType.SENTENCE),
+                new Token(null, "текст http://www.haha.ru текст http://haha.ru", TokenType.SENTENCE),
+                new Token(null, "текст http://content-analysis.ru текст", TokenType.SENTENCE),
             };
 
             return withLiksStrings;
@@ -212,8 +212,8 @@ namespace TTPLibTests
         {
             List<Token> withLiksStrings = new List<Token>
             {
-                new Word(null, "-!@#$%^&*()_+=арбуз\"'<>№;%:?*"),
-                new Sentence(null, "текст . -!@#$%^&*()_+=арбуз\"'<>№;%:?* текст , ")
+                new Token(null, "-!@#$%^&*()_+=арбуз\"'<>№;%:?*", TokenType.WORD),
+                new Token(null, "текст . -!@#$%^&*()_+=арбуз\"'<>№;%:?* текст , ", TokenType.SENTENCE)
             };
 
             return withLiksStrings;
@@ -239,10 +239,10 @@ namespace TTPLibTests
         {
             List<Token> withLiksStrings = new List<Token>
             {
-                new Word(null, "привет"),
-                new Word(null, "да"),
-                new Word(null, "я"),
-                new Word(null, "нет")
+                new Token(null, "привет", TokenType.WORD),
+                new Token(null, "да", TokenType.WORD),
+                new Token(null, "я", TokenType.WORD),
+                new Token(null, "нет", TokenType.WORD)
             };
 
             return withLiksStrings;
@@ -268,13 +268,13 @@ namespace TTPLibTests
         {
             List<Token> singleNums = new List<Token>
             {
-                new Word(null, "1"),
-                new Word(null, "22"),
-                new Word(null, "333"),
-                new Word(null, "0"),
+                new Token(null, "1", TokenType.WORD),
+                new Token(null, "22", TokenType.WORD),
+                new Token(null, "333", TokenType.WORD),
+                new Token(null, "0", TokenType.WORD),
 
-                new Sentence(null, "текст 1 текст"),
-                new Sentence(null, "текст 11 текст"),
+                new Token(null, "текст 1 текст", TokenType.SENTENCE),
+                new Token(null, "текст 11 текст", TokenType.SENTENCE),
             };
 
             return singleNums;
@@ -308,14 +308,14 @@ namespace TTPLibTests
         {
             List<Token> someOfWordsAreStopWords = new List<Token>
             {
-                new Word(null, "да"),
-                new Word(null, "попугай"),
-                new Word(null, "под"),
-                new Word(null, "рыбка"),
+                new Token(null, "да", TokenType.WORD),
+                new Token(null, "попугай", TokenType.WORD),
+                new Token(null, "под", TokenType.WORD),
+                new Token(null, "рыбка", TokenType.WORD),
 
-                new Word(null, "no"),
-                new Word(null, "fish"),
-                new Word(null, "yes")
+                new Token(null, "no", TokenType.WORD),
+                new Token(null, "fish", TokenType.WORD),
+                new Token(null, "yes", TokenType.WORD)
             };
 
             return someOfWordsAreStopWords;

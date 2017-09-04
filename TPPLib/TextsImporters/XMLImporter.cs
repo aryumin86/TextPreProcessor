@@ -11,7 +11,7 @@ namespace TPPLib.TextsImporters
         {
         }
 
-        public override IEnumerable<RawText> ImportTexts()
+        public override IEnumerable<Token> ImportTexts()
         {
             throw new NotImplementedException();
         }

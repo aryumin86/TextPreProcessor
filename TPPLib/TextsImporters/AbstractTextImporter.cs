@@ -30,6 +30,6 @@ namespace TPPLib.TextsImporters
         /// Загруить тексты из файлов в указанной в конструкторе директории.
         /// </summary>
         /// <returns>The texts.</returns>
-		public abstract IEnumerable<RawText> ImportTexts();
+		public abstract IEnumerable<Token> ImportTexts();
     }
 }

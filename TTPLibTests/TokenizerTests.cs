@@ -14,10 +14,11 @@ namespace TTPLibTests
 		[Trait("Category", "Unit")]
 		public void RusTokenizer_Really_Tokenizes()
 		{
-            var rawText = new RawText()
+            var rawText = new Token()
             {
                 TextId = "1",
-                Content = "Это какой-то #текст... Это второе предложение!.. Всё?"
+                Content = "Это какой-то #текст... Это второе предложение!.. Всё?",
+                TokenType = TokenType.FULL_TEXT
             };
 
             var tokenizer = new RusTokenizer();
@@ -30,8 +31,9 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void RusTokenizer_Correctly_Split_Text_To_Sentences_Without_Shortages(){
 
-			RawText rawText = new RawText()
-			{
+            Token rawText = new Token()
+            {
+                TokenType = TokenType.FULL_TEXT,
 				TextId = "1",
                 Content = @"
 Это какой-то #текст... Это второе предложение! (Всё?) 
@@ -64,21 +66,25 @@ $
             }
 		}
 
-        private IEnumerable<RawText> GetSentencesWithShortages(){
-            return new List<RawText>
+        private IEnumerable<Token> GetSentencesWithShortages(){
+            return new List<Token>
             {
-                new RawText(){
-                    Content = "Этот человек живет в г.Урюпинск"
+                new Token(){
+                    Content = "Этот человек живет в г.Урюпинск",
+                    TokenType = TokenType.FULL_TEXT
                 },
-				new RawText(){
-					Content = "А этот - в г. Джакарта"
-				},
-				new RawText(){
-					Content = "А этот по адресу пос. Знаменка д. 4 корп. 1 кв. 666 эт. 66, кот. около с. Оболдуевка"
-				},
-				new RawText(){
-					Content = "А этот по адресу пос.Знаменка д.4 корп.1 кв.666 эт.66, кот.около с.Оболдуевка"
-				}
+				new Token(){
+					Content = "А этот - в г. Джакарта",
+                    TokenType = TokenType.FULL_TEXT
+                },
+				new Token(){
+					Content = "А этот по адресу пос. Знаменка д. 4 корп. 1 кв. 666 эт. 66, кот. около с. Оболдуевка",
+                    TokenType = TokenType.FULL_TEXT
+                },
+				new Token(){
+					Content = "А этот по адресу пос.Знаменка д.4 корп.1 кв.666 эт.66, кот.около с.Оболдуевка",
+                    TokenType = TokenType.FULL_TEXT
+                }
             };
         }
     }

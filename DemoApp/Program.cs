@@ -15,19 +15,22 @@ namespace DemoApp
         {
             var texts = new List<Token>()
             {
-               new RawText
+               new Token
                {
                    TextId = "1",
-                   Content = "Это вот какой-то первый текст... Просто тупо текстик какой-то! abc@mail.ru"
+                   Content = "Это вот какой-то первый текст... Просто тупо текстик какой-то! abc@mail.ru",
+                   TokenType = TokenType.FULL_TEXT
                },
-               new RawText
+               new Token
                {
                    TextId = "2",
-                   Content = "<bold>А  это вот</bold> какой-то второй текст... http://hahaha.ru Ужне значительно интереснее!"
-               },new RawText
+                   Content = "<bold>А  это вот</bold> какой-то второй текст... http://hahaha.ru Ужне значительно интереснее!",
+                   TokenType = TokenType.FULL_TEXT
+               },new Token
                {
                    TextId = "3",
-                   Content = "Ну и на последок третий текст! Вот так. Оп"
+                   Content = "Ну и на последок третий текст! Вот так. Оп",
+                   TokenType = TokenType.FULL_TEXT
                }
             };
 

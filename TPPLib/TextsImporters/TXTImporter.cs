@@ -24,7 +24,7 @@ namespace TPPLib.TextsImporters
         /// Импортировать тексты.
         /// </summary>
         /// <returns>The texts.</returns>
-        public override IEnumerable<RawText> ImportTexts()
+        public override IEnumerable<Token> ImportTexts()
         {
             throw new NotImplementedException();
         }

@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <Compile Remove="Enums\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <None Remove="Enums\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="TPPOperations\" />
     <Folder Include="TPPResults\" />
     <Folder Include="TextsImporters\" />
@@ -13,9 +18,5 @@
     <Folder Include="Tokenizers\" />
     <Folder Include="Stemmers\" />
     <Folder Include="LibDataWorkItems\Dicts\" />
-    <Folder Include="Enums\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Entities\TokenType.cs" />
   </ItemGroup>
 </Project>

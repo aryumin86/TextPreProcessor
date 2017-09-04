@@ -35,7 +35,7 @@ namespace TPPLib
         /// </summary>
         /// <param name="raw"></param>
         [Obsolete]
-        public void RemoveEmails(RawText raw)
+        public void RemoveEmails(Token raw)
         {
 
         }
@@ -45,7 +45,7 @@ namespace TPPLib
         /// </summary>
         /// <param name="raw"></param>
         [Obsolete]
-        public void RemoveHashTags(RawText raw)
+        public void RemoveHashTags(Token raw)
         {
 
         }
@@ -55,7 +55,7 @@ namespace TPPLib
         /// </summary>
         /// <param name="raw"></param>
         [Obsolete]
-        public void RemoveUrls(RawText raw)
+        public void RemoveUrls(Token raw)
         {
 
         }
@@ -65,7 +65,7 @@ namespace TPPLib
         /// </summary>
         /// <param name="raw"></param>
         [Obsolete]
-        public void RemoveHtmlAndJsTags(RawText raw)
+        public void RemoveHtmlAndJsTags(Token raw)
         {
 
         }
@@ -75,7 +75,7 @@ namespace TPPLib
         /// </summary>
         /// <param name="raw"></param>
         [Obsolete]
-        public void RemovePunctuation(RawText raw)
+        public void RemovePunctuation(Token raw)
         {
 
         }
@@ -85,7 +85,7 @@ namespace TPPLib
         /// </summary>
         /// <param name="raw"></param>
         [Obsolete]
-        public void RemoveSingleStaingNumbers(RawText raw)
+        public void RemoveSingleStaingNumbers(Token raw)
         {
 
         }
