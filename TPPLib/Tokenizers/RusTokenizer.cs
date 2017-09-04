@@ -26,13 +26,17 @@ namespace TPPLib.Tokenizers
 
             raw.Content = Regex.Replace(raw.Content.ToLower(), abbrs, substitutor);
 
+            int pos = 0;
+
             res = raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
                      .Select(x => new Sentence()
                      {
                          Content = x,
                          ParentToken = raw,
-                         TextId = raw.TextId
-                     }).ToList();
+                         TextId = raw.TextId,
+                         PositionInParent = pos++
+                     })
+                     .ToList();
 
             res.ForEach(x => x.Content = x.Content.Replace(substitutor, "."));
 

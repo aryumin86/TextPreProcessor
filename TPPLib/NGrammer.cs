@@ -21,7 +21,16 @@ namespace TPPLib
         /// <returns></returns>
         public IEnumerable<Token> CreateNGramms(List<Token> tokens, int n, bool saveBaseNGramms = true)
         {
-            throw new NotImplementedException();
+            if (tokens.Count <= n)
+                return tokens;
+
+            List<Token> res = new List<Token>();
+
+            for (int i = 0; i < tokens.Count; i++){
+                
+            }
+
+            return res;
         }
     }
 }

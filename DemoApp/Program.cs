@@ -60,10 +60,10 @@ namespace DemoApp
 
             foreach (var t in texts)
             {
-                t.Tokens = tokenizer.TokenizeToWords(t).Select(to => (Token)to).ToList();
-                @operator = new TPPOperator(t.Tokens, ops);
+                t.ChildrenTokens = tokenizer.TokenizeToWords(t).Select(to => (Token)to).ToList();
+                @operator = new TPPOperator(t.ChildrenTokens, ops);
                 @operator.Exucute();
-                t.Tokens = cleaner.MakeBasicCleaning(t.Tokens).Select(to => (Token)to).ToList();
+                t.ChildrenTokens = cleaner.MakeBasicCleaning(t.ChildrenTokens).Select(to => (Token)to).ToList();
             };
 
             Console.ReadLine();
