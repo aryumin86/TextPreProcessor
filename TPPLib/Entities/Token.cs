@@ -38,11 +38,5 @@ namespace TPPLib.Entities
         /// </summary>
         /// <value>The position in parent.</value>
         public int? PositionInParent { get; set; }
-
-        /// <summary>
-        /// Стартовая позиция токена (индекс слова) во всем тексте.
-        /// </summary>
-        /// <value>The token start position.</value>
-        public int? TokenStartPosition { get; set; }
     }
 }

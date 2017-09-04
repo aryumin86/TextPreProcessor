@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TPPLib.Entities;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TPPLib.Tokenizers
 {
@@ -12,21 +13,30 @@ namespace TPPLib.Tokenizers
     {
 		public override IEnumerable<Sentence> TokenizeToSentences(Token raw)
 		{
+            string substitutor = "_POINT_";
+
 			List<Sentence> res = new List<Sentence>();
 
 			char[] delims = new char[]{
-				'\n' , '.' , ',' , '?', '!'
+				'\n' , '.', '?', '!'
 			};
 
-			string[] abbrs = new string[] {
-                //с точками
-                "гор.", "г.", "пос.", "стр.", "кот.",  "", "", "",
+			string abbrs = 
+                @"(?<=\b(гор|г|пос|стр|кот|с|д|эт|кв|корп))(\.)";
 
-                //с дефисами
-                "г-н", "р-н", "", "", ""
-			};
+            raw.Content = Regex.Replace(raw.Content.ToLower(), abbrs, substitutor);
 
-			raw.Content.Split();
+            res = raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
+                     .Select(x => new Sentence()
+                     {
+                         Content = x,
+                         ParentToken = raw,
+                         TextId = raw.TextId
+                     }).ToList();
+
+            res.ForEach(x => x.Content = x.Content.Replace(substitutor, "."));
+
+            raw.Content = raw.Content.Replace(substitutor, ".");
 
 			return res;
 		}

@@ -13,5 +13,9 @@
     <Folder Include="Tokenizers\" />
     <Folder Include="Stemmers\" />
     <Folder Include="LibDataWorkItems\Dicts\" />
+    <Folder Include="Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Entities\TokenType.cs" />
   </ItemGroup>
 </Project>

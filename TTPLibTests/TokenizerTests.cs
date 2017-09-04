@@ -36,7 +36,7 @@ namespace TTPLibTests
                 Content = @"
 Это какой-то #текст... Это второе предложение! (Всё?) 
  Вот тут нету точки и др. вот. 
-Г-н Иванов родился в 1765 г. в гор. Урюпинск. 
+Г-н Иванов родился в 1765 г. в гор. Урюпинск и мкр. четвертый. 
 ...
 $
 %
@@ -55,7 +55,6 @@ $
 		[Trait("Category", "Unit")]
 		public void RusTokenizer_Does_Not_Split_Shortages_As_Separate_Sentences()
 		{
-
             var texts = GetSentencesWithShortages();
 
 			var tokenizer = new RusTokenizer();
@@ -69,25 +68,16 @@ $
             return new List<RawText>
             {
                 new RawText(){
-                    Content = ""
+                    Content = "Этот человек живет в г.Урюпинск"
                 },
 				new RawText(){
-					Content = ""
+					Content = "А этот - в г. Джакарта"
 				},
 				new RawText(){
-					Content = ""
+					Content = "А этот по адресу пос. Знаменка д. 4 корп. 1 кв. 666 эт. 66, кот. около с. Оболдуевка"
 				},
 				new RawText(){
-					Content = ""
-				},
-				new RawText(){
-					Content = ""
-				},
-				new RawText(){
-					Content = ""
-				},
-				new RawText(){
-					Content = ""
+					Content = "А этот по адресу пос.Знаменка д.4 корп.1 кв.666 эт.66, кот.около с.Оболдуевка"
 				}
             };
         }
