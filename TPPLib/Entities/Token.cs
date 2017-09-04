@@ -10,12 +10,39 @@ namespace TPPLib.Entities
     /// </summary>
     public abstract class Token
     {
+        /// <summary>
+        /// Текстовое содержимое токена.
+        /// </summary>
+        /// <value>The content.</value>
         public string Content { get; set; }
+
+        /// <summary>
+        /// Id текста, которрый содержит токен (или коим токен является).
+        /// </summary>
+        /// <value>The text identifier.</value>
         public string TextId { get; set; }
 
         /// <summary>
         /// Дочерние токены (могут быть словами, абзацами, предложениями и др.
         /// </summary>
         public List<Token> Tokens = new List<Token>();
+
+        /// <summary>
+        /// Родительский токен.
+        /// </summary>
+        /// <value>The parent.</value>
+        public Token Parent { get; set; }
+
+        /// <summary>
+        /// Позиция (индекс) токена в родительском токене.
+        /// </summary>
+        /// <value>The position in parent.</value>
+        public int? PositionInParent { get; set; }
+
+        /// <summary>
+        /// Стартовая позиция токена (индекс слова) во всем тексте.
+        /// </summary>
+        /// <value>The token start position.</value>
+        public int? TokenStartPosition { get; set; }
     }
 }
