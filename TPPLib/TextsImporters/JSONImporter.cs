@@ -10,11 +10,7 @@ namespace TPPLib.TextsImporters
     /// </summary>
     public class JSONImporter : AbstractTextImporter
     {
-        public JSONImporter(string dir, Encoding enc) : base(dir, enc)
-        {
-        }
-
-        public override IEnumerable<Token> ImportTexts()
+        public override IEnumerable<Token> ImportTexts(string dir, Encoding enc)
         {
             throw new NotImplementedException();
         }
