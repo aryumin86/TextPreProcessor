@@ -11,25 +11,30 @@ namespace TTPLibTests
     {
 		[Fact]
 		[Trait("Category", "Unit")]
-        public void NGrammer_Returns_Corrent_NGramms_Num(){
+        public void NGrammer_Returns_Correct_NGramms_Num(){
 
             NGrammer ngrammer = new NGrammer();
-            var words = GenerateListOfWords((15));
 
             //биграммы
-            var tt = ngrammer.CreateNGramms(words, 2);
+            var words = GenerateListOfWords((15));
+            var tt = ngrammer.CreateNGramms(words, 2, saveBaseNGramms: false);
             Assert.True(tt.Count() == 14);
 
-
-			//триграммы
-			tt = ngrammer.CreateNGramms(words, 3);
+            //триграммы
+            words = GenerateListOfWords((15));
+            tt = ngrammer.CreateNGramms(words, 3, saveBaseNGramms: false);
 			Assert.True(tt.Count() == 13);
 
+            //4-граммы
+            words = GenerateListOfWords((15));
+            tt = ngrammer.CreateNGramms(words, 4, saveBaseNGramms: false);
+			Assert.True(tt.Count() == 12);
 
-			//4-граммы
-			tt = ngrammer.CreateNGramms(words, 4);
-			Assert.True(tt.Count() == 13);
 
+            //очень короткий список токенов подается на вход
+            words = GenerateListOfWords((3));
+            tt = ngrammer.CreateNGramms(words, 3, saveBaseNGramms: false);
+            Assert.True(tt.Count() == 3);
         }
 
         private List<Token> GenerateListOfWords(int num){

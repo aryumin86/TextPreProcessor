@@ -23,8 +23,12 @@ namespace TPPLib.Entities
         /// </summary>
         WORD = 4,
         /// <summary>
+        /// N-Грамма.
+        /// </summary>
+        NGRAMM = 5,
+        /// <summary>
         /// Какой-либо другой кусок текста.
         /// </summary>
-        OTHER = 5
+        OTHER = 6
     }
 }

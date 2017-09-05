@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TPPLib.Entities;
+using System.Linq;
 
 namespace TPPLib.Tokenizers
 {
@@ -31,7 +32,14 @@ namespace TPPLib.Tokenizers
         /// <param name="raw">Исходный текст</param>
         public IEnumerable<Token> TokenizeToParagraphs(Token raw)
         {
-            throw new NotImplementedException();
+            return raw.Content.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => new Token()
+                {
+                    TextId = raw.TextId,
+                    Content = x,
+                    ParentToken = raw,
+                    TokenType = TokenType.PARAGRAPH
+                });
         }
 
         /// <summary>

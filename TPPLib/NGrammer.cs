@@ -24,11 +24,33 @@ namespace TPPLib
             if (tokens.Count <= n)
                 return tokens;
 
-            List<Token> res = new List<Token>();
+            var res = new List<Token>();
+            Token t;
 
-            for (int i = 0; i < tokens.Count; i++){
-                
+            for (int i = 0; i < tokens.Count - n + 1; i++){
+
+                string content = tokens[i].Content;
+                int j = i;
+
+                int added = 1;
+                while (added < n)
+                {
+                    content += (" " + tokens[++j].Content);
+                    added++;
+                }
+
+                t = new Token()
+                {
+                    TextId = tokens[0].TextId,
+                    TokenType = TokenType.NGRAMM,
+                    Content = content
+                };
+
+                res.Add(t);
             }
+
+            if (saveBaseNGramms)
+                res.AddRange(tokens);
 
             return res;
         }

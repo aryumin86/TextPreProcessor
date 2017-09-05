@@ -87,5 +87,20 @@ $
                 }
             };
         }
+
+        [Fact]
+        [Trait("Category", "Unit")]
+        public void Tokenizer_Correctly_Splits_To_Paragraphs()
+        {
+            var t = new Token()
+            {
+                Content = "Предложение в абзаце1. \r\n А вот это второй абзац... вот"
+            };
+
+            var tokenizer = new RusTokenizer();
+            var sents = tokenizer.TokenizeToParagraphs(t);
+
+            Assert.True(sents.Count() == 2);
+        }
     }
 }
