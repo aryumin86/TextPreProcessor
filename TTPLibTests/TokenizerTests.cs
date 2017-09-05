@@ -49,7 +49,7 @@ $
 			var tokenizer = new RusTokenizer();
 			var centences = tokenizer.TokenizeToSentences(rawText);
 
-            Assert.True(centences.Count() == 4);
+            Assert.True(centences.Count() == 5);
 		}
 
 

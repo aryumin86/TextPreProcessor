@@ -18,11 +18,11 @@ namespace TPPLib.Tokenizers
 			List<Token> res = new List<Token>();
 
 			char[] delims = new char[]{
-				'\n' , '.', '?', '!'
+				'\n' , '.', '?', '!', '\r'
 			};
 
 			string abbrs = 
-                @"(?<=\b(гор|г|пос|стр|кот|с|д|эт|кв|корп))(\.)";
+                @"(?<=\b(гор|г|пос|стр|кот|с|д|эт|кв|корп|др|мкр))(\.)";
 
             raw.Content = Regex.Replace(raw.Content.ToLower(), abbrs, substitutor);
 
@@ -38,6 +38,8 @@ namespace TPPLib.Tokenizers
                          TokenType = TokenType.SENTENCE
                      })
                      .ToList();
+
+            res = res.Where(x => Regex.IsMatch(x.Content, @"[а-яА-Яa-zA-Z]")).ToList();
 
             res.ForEach(x => x.Content = x.Content.Replace(substitutor, "."));
 
