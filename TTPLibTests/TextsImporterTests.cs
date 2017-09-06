@@ -15,7 +15,7 @@ namespace TTPLibTests
         [Trait("Category", "Unit")]
         public void Importer_NonRecursively_Correctly_Imports_From_Txt()
         {
-            string filesDir = "";
+            string filesDir = "../../../some_texts";
             var importer = new TXTImporter();
             var texts = importer.ImportTexts(filesDir, Encoding.UTF8);
 

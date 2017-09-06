@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="TPPOperations\" />
-    <Folder Include="TPPResults\" />
     <Folder Include="TextsImporters\" />
     <Folder Include="LibDataWorkItems\" />
     <Folder Include="Tokenizers\" />
