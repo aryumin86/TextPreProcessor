@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TPPLib.Entities;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TPPLib.TPPResults
 {
@@ -35,7 +36,14 @@ namespace TPPLib.TPPResults
         /// </summary>
         public Dictionary<string, int> dict;
 
-        public TermTextMatrix(List<Token> terms, List<Token> texts, bool justOccurrences = false)
+        /// <summary>
+        /// Поиск термов идет по свойству Content в объектах texts.
+        /// объектах texts.
+        /// </summary>
+        /// <param name="terms"></param>
+        /// <param name="texts"></param>
+        /// <param name="justOccurrences"></param>
+        public TermTextMatrix(List<Token> terms, List<Token> texts,  bool justOccurrences = false)
         {
             dict = new Dictionary<string, int>();
             int termId = 0;
@@ -57,16 +65,76 @@ namespace TPPLib.TPPResults
                     if (justOccurrences)
                     {
                         if (texts[i].Content.Contains(words[j].Key))
-                            Matrix[i, j] = 1;
+                            Matrix[i, j] = GetGen(1);
                         else
-                            Matrix[i, j] = 0;
+                            Matrix[i, j] = GetGen(0);
                     }
                     else
                     {
-
+                        Matrix[i, j] = GetGen(CountSubstrings(texts[i].Content, words[j].Key));
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Конструктор предполагает наличие id текста у каждого токена (терма)
+        /// </summary>
+        /// <param name="terms"></param>
+        /// <param name="justOccurrences"></param>
+        public TermTextMatrix(List<Token> terms, bool justOccurrences = false)
+        {
+
+        }
+
+        /// <summary>
+        /// Конвертировать struct в T.
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        private static T GetGen<U>(U val) where U : struct
+        {
+            if(val is int)
+            {
+                return (T)Convert.ChangeType(1, typeof(int));
+            }
+            else if(val is double)
+            {
+                return (T)Convert.ChangeType(1, typeof(double));
+            }
+            else if (val is byte)
+            {
+                return (T)Convert.ChangeType(1, typeof(byte));
+            }
+            else if (val is short)
+            {
+                return (T)Convert.ChangeType(1, typeof(short));
+            }
+            else if (val is long)
+            {
+                return (T)Convert.ChangeType(1, typeof(long));
+            }
+            else
+            {
+                throw new FormatException();
+            }            
+        }
+
+        /// <summary>
+        /// Находит число всех вхождений образца в текст.
+        /// </summary>
+        /// <param name="full">текст</param>
+        /// <param name="sub">образец</param>
+        /// <returns></returns>
+        private static int CountSubstrings(string full, string sub)
+        {
+            for(int i = 0; i < full.Length - sub.Length; i++)
+            {
+
+            }
+
+            return 0;
         }
     }
 }
