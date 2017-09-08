@@ -3,7 +3,7 @@ namespace TPPLib.TPPResults
 {
     public class TextsArrayResult : TPPResult
     {
-        public override object ConvertToTCSV()
+        public override string ConvertToTCSV()
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@ namespace TPPLib.TPPResults
         /// Конвертация результата в CSV.
         /// </summary>
         /// <returns>The to tcsv.</returns>
-        public abstract object ConvertToTCSV();
+        public abstract string ConvertToTCSV();
 
         /// <summary>
         /// Конвертация результата в XLSX.

@@ -6,7 +6,7 @@ namespace TPPLib.TPPResults
 	/// </summary>
 	public class TokensFreqDict : TPPResult
     {
-        public override object ConvertToTCSV()
+        public override string ConvertToTCSV()
         {
             throw new NotImplementedException();
         }

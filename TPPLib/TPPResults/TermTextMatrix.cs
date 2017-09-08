@@ -72,19 +72,63 @@ namespace TPPLib.TPPResults
                     else
                     {
                         Matrix[i, j] = GetGen(CountSubstrings(texts[i].Content, words[j].Key));
+
+                        //TODO Доделать реализацию!
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Конструктор предполагает наличие id текста у каждого токена (терма)
+        /// Конструктор предполагает наличие списка дочерних токенов у каждого текста
         /// </summary>
-        /// <param name="terms"></param>
-        /// <param name="justOccurrences"></param>
-        public TermTextMatrix(List<Token> terms, bool justOccurrences = false)
+        /// <param name="texts">тексты с дочерними элементами - термами или n-граммами</param>
+        /// <param name="justOccurrences">фиксировать в матрице только встречаемость терма в тексте (1 или 0)</param>
+        public TermTextMatrix(List<Token> texts, bool justOccurrences = false)
         {
+            dict = new Dictionary<string, int>();
+            int termId = 0;
+            foreach (var text in texts)
+            {
+                foreach(var term in text.ChildrenTokens)
+                {
+                    if (!dict.ContainsKey(term.Content))
+                        dict.Add(term.Content, termId++);
+                }                
+            }
 
+            words = dict.ToList();
+            textsIds = texts.Select(t => t.TextId).ToList();
+
+            this.Matrix = new T[texts.Count, words.Count()];
+
+            if (justOccurrences)
+            {
+                for(int row = 0; row < texts.Count; row++)
+                {
+                    for (int column = 0; column < words.Count; column++)
+                    {
+                        if(texts[row].ChildrenTokens.Select(t => t.Content).Contains(words[column].Key))
+                            this.Matrix[row, column] = GetGen(1);
+                        else
+                            this.Matrix[row, column] = GetGen(0);
+                    }
+                }
+            }
+            else
+            {
+                for (int row = 0; row < texts.Count; row++)
+                {
+                    for (int column = 0; column < words.Count; column++)
+                    {
+                        this.Matrix[row, column] = 
+                            GetGen((texts[row].ChildrenTokens
+                                .Select(t => t.Content)
+                                .Where(t => t == words[column].Key)
+                                .Count()));
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -97,23 +141,23 @@ namespace TPPLib.TPPResults
         {
             if(val is int)
             {
-                return (T)Convert.ChangeType(1, typeof(int));
+                return (T)Convert.ChangeType(val, typeof(int));
             }
             else if(val is double)
             {
-                return (T)Convert.ChangeType(1, typeof(double));
+                return (T)Convert.ChangeType(val, typeof(double));
             }
             else if (val is byte)
             {
-                return (T)Convert.ChangeType(1, typeof(byte));
+                return (T)Convert.ChangeType(val, typeof(byte));
             }
             else if (val is short)
             {
-                return (T)Convert.ChangeType(1, typeof(short));
+                return (T)Convert.ChangeType(val, typeof(short));
             }
             else if (val is long)
             {
-                return (T)Convert.ChangeType(1, typeof(long));
+                return (T)Convert.ChangeType(val, typeof(long));
             }
             else
             {
