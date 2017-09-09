@@ -72,8 +72,6 @@ namespace TPPLib.TPPResults
                     else
                     {
                         Matrix[i, j] = GetGen(CountSubstrings(texts[i].Content, words[j].Key));
-
-                        //TODO Доделать реализацию!
                     }
                 }
             }
@@ -173,12 +171,20 @@ namespace TPPLib.TPPResults
         /// <returns></returns>
         private static int CountSubstrings(string full, string sub)
         {
-            for(int i = 0; i < full.Length - sub.Length; i++)
+            int num = 0;
+            int index;
+            while(true)
             {
-
+                if ((index = full.IndexOf(sub)) != -1)
+                {
+                    num++;
+                    full = full.Substring(index + sub.Length);
+                }
+                else
+                    break;
             }
 
-            return 0;
+            return num;
         }
     }
 }
