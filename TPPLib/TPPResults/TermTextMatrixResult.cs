@@ -42,11 +42,9 @@ namespace TPPLib.TPPResults
                     sb.Append(_delimeter);
                     for (int column = 0; column < this._ttm.words.Count; column++)
                     {
-                        if (row == 0)                        {
-
-                            sb.Append(_ttm.words[column].Key);
-                            sb.Append(_delimeter);
-                        }
+                        sb.Append(_ttm.words[column].Key);
+                        if(column != this._ttm.words.Count - 1)
+                            sb.Append(_delimeter);                        
                     }
                     sb.Append(Environment.NewLine);
                 }
@@ -58,6 +56,9 @@ namespace TPPLib.TPPResults
                     sb.Append(_delimeter);
                     sb.Append(this._ttm.Matrix[row,column]);
                 }
+
+                if (row != this._ttm.textsIds.Count - 1)
+                    sb.Append(Environment.NewLine);
             }
 
             return sb.ToString();
