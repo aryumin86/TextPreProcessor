@@ -33,7 +33,7 @@ namespace TPPLib.Entities
         public Token ParentToken { get; set; }
 
         /// <summary>
-        /// Позиция (индекс) токена в родительском токене.
+        /// Позиция (индекс) токена в родительском токене. Начинается с 0.
         /// </summary>
         /// <value>The position in parent.</value>
         public int? PositionInParent { get; set; }

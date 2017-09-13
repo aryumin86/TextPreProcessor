@@ -56,8 +56,10 @@ namespace TPPLib.Tokenizers
                 ' ','-','!',',',';','?'
             };
 
+            int pos = 0;
+
             return raw.Content.Split(delims, StringSplitOptions.RemoveEmptyEntries)
-                      .Select(t => new Token { TextId = raw.TextId, Content = t.Trim(), TokenType = TokenType.WORD }).ToList();
+                      .Select(t => new Token { TextId = raw.TextId, Content = t.Trim(), TokenType = TokenType.WORD, PositionInParent = pos++ }).ToList();
         }
     }
 }
