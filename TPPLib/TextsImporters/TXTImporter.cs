@@ -57,7 +57,7 @@ namespace TPPLib.TextsImporters
 
                     content = string.Join(Environment.NewLine,
                         lines.Where(s => !s.Trim().StartsWith("#") &&
-                        s.Trim().EndsWith("#")));
+                        s.Trim().EndsWith("#"))).Trim();
 
                     yield return new Token()
                     {
